@@ -77,6 +77,13 @@ document.querySelectorAll("#year").forEach((element) => {
   element.textContent = new Date().getFullYear();
 });
 
+// Back to top
+const backToTop = document.getElementById("back-to-top");
+
+backToTop?.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
+});
+
 // Contact form
 const contactForm = document.getElementById("contact-form");
 
@@ -214,6 +221,7 @@ function updateOnScroll() {
   const pageProgress = scrollMax > 0 ? window.scrollY / scrollMax : 0;
   progressBar.style.transform = `scaleX(${pageProgress})`;
   header?.classList.toggle("scrolled", window.scrollY > 12);
+  backToTop?.classList.toggle("visible", window.scrollY > window.innerHeight * 0.6);
 
   if (!prefersReducedMotion && window.innerWidth > 760) {
     const viewportCenter = window.innerHeight / 2;
