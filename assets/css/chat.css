@@ -289,4 +289,11 @@
     width: 54px;
     height: 54px;
   }
+
+  .back-to-top {
+    right: 0.75rem;
+    bottom: calc(0.75rem + 54px + 0.75rem);
+    width: 54px;
+    height: 54px;
+  }
 }
