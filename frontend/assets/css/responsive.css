@@ -1,0 +1,452 @@
+@media (max-width: 1120px) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(420px, 0.9fr);
+    gap: 3rem;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(3.6rem, 7vw, 6rem);
+  }
+
+  .hero-visual {
+    min-height: 500px;
+  }
+
+  .flow-board {
+    height: 436px;
+  }
+
+  .flow-lines {
+    transform: scale(0.9);
+    transform-origin: top left;
+  }
+
+  .flow-node {
+    width: 184px;
+  }
+
+  .node-output {
+    width: 210px;
+  }
+
+  .process-layout,
+  .outcomes-grid {
+    gap: 5rem;
+  }
+}
+
+@media (max-width: 960px) {
+  .container {
+    width: min(100% - 2.2rem, 760px);
+  }
+
+  .menu-toggle {
+    display: block;
+    z-index: 2;
+  }
+
+  .nav-links {
+    position: fixed;
+    z-index: 1;
+    top: 73px;
+    right: 1rem;
+    left: 1rem;
+    display: grid;
+    align-content: start;
+    padding: 1rem;
+    gap: 0.2rem;
+    background: rgba(255, 253, 249, 0.98);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-12px) scale(0.98);
+    transform-origin: top center;
+    transition: opacity 0.25s ease, transform 0.25s var(--ease-out);
+  }
+
+  .nav-links.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+
+  .nav-links > a:not(.nav-cta) {
+    padding: 0.85rem 0.9rem;
+    border-radius: 11px;
+  }
+
+  .nav-links > a:not(.nav-cta)::after {
+    display: none;
+  }
+
+  .nav-links > a:not(.nav-cta):hover,
+  .nav-links > a.active {
+    background: var(--primary-light);
+  }
+
+  .nav-cta {
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 5.5rem;
+  }
+
+  .hero-grid,
+  .split-heading,
+  .process-layout,
+  .outcomes-grid,
+  .about-hero-grid,
+  .contact-hero-grid,
+  .about-story-grid,
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-grid {
+    gap: 4.5rem;
+  }
+
+  .hero-copy h1 {
+    max-width: 10ch;
+    font-size: clamp(4rem, 12vw, 7rem);
+  }
+
+  .hero-text {
+    max-width: 62ch;
+  }
+
+  .hero-visual-wrap {
+    width: min(100%, 650px);
+    margin-inline: auto;
+  }
+
+  .scroll-cue {
+    display: none;
+  }
+
+  .split-heading {
+    align-items: start;
+    gap: 1.6rem;
+  }
+
+  .section-intro {
+    max-width: 60ch;
+  }
+
+  .process-intro,
+  .outcomes-copy,
+  .contact-copy {
+    position: static;
+  }
+
+  .process-intro {
+    padding: 7rem 0 3rem;
+  }
+
+  .process-intro h2 {
+    max-width: 12ch;
+  }
+
+  .process-steps {
+    padding: 2rem 0 7rem;
+    gap: 2rem;
+  }
+
+  .process-step {
+    min-height: 390px;
+    opacity: 0.72;
+  }
+
+  .outcomes-copy h2 {
+    max-width: 12ch;
+  }
+
+  .outcomes-grid {
+    gap: 4rem;
+  }
+
+  .cta-panel {
+    grid-template-columns: 1fr;
+    align-items: end;
+  }
+
+  .cta-action {
+    justify-items: start;
+  }
+
+  .page-hero h1 {
+    max-width: 12ch;
+  }
+
+  .about-portrait-card {
+    width: min(100%, 520px);
+    justify-self: start;
+  }
+
+  .about-story-grid,
+  .contact-layout {
+    gap: 3.5rem;
+  }
+
+  .footer-main {
+    grid-template-columns: 1.4fr repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 760px) {
+  h1 {
+    font-size: clamp(3.1rem, 15vw, 5.4rem);
+  }
+
+  h2 {
+    font-size: clamp(2.35rem, 11vw, 4rem);
+  }
+
+  .section {
+    padding: 6rem 0;
+  }
+
+  .hero {
+    padding: 4.3rem 0 4.5rem;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(3.45rem, 15vw, 5.2rem);
+  }
+
+  .hero-actions .button {
+    width: 100%;
+  }
+
+  .hero-proof {
+    display: grid;
+  }
+
+  .hero-visual-wrap {
+    padding: 1.2rem 0;
+  }
+
+  .hero-visual {
+    min-height: 470px;
+    border-radius: 26px;
+  }
+
+  .flow-board {
+    height: 406px;
+  }
+
+  .visual-topbar {
+    min-height: 56px;
+  }
+
+  .flow-lines {
+    top: 14px;
+    left: -32px;
+    width: calc(100% + 40px);
+    transform: scale(0.78);
+  }
+
+  .flow-node {
+    width: 178px;
+    min-height: 66px;
+  }
+
+  .node-input { top: 28px; left: 17px; }
+  .node-ai { top: 126px; }
+  .node-output { top: 226px; right: 15px; width: 205px; }
+  .flow-toast { right: 16px; bottom: 18px; left: 16px; }
+  .floating-chip { display: none; }
+
+  .solutions-bento {
+    grid-template-columns: 1fr;
+  }
+
+  .solution-featured {
+    min-height: 610px;
+  }
+
+  .solution-card {
+    min-height: 360px;
+  }
+
+  .mini-workflow {
+    right: -25px;
+    width: 94%;
+  }
+
+  .process-step {
+    grid-template-columns: 1fr;
+    min-height: 420px;
+    padding: 2rem;
+  }
+
+  .process-meter {
+    margin-top: 2rem;
+  }
+
+  .outcome-item {
+    grid-template-columns: 38px 1fr;
+  }
+
+  .outcome-arrow {
+    display: none;
+  }
+
+  .cta-panel {
+    min-height: 560px;
+    padding: 2.2rem;
+  }
+
+  .cta-copy h2 {
+    max-width: 10ch;
+  }
+
+  .about-meta-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .about-meta-item {
+    border-right: 0;
+    border-bottom: 1px solid var(--line-light);
+  }
+
+  .about-meta-item:last-child {
+    border-bottom: 0;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-brand {
+    grid-column: span 2;
+  }
+
+  .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .container,
+  .narrow {
+    width: calc(100% - 1.4rem);
+  }
+
+  .site-header {
+    padding: 0.55rem 0;
+  }
+
+  .logo-mark {
+    width: 37px;
+    height: 37px;
+  }
+
+  .nav-links {
+    top: 66px;
+    right: 0.7rem;
+    left: 0.7rem;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(3.2rem, 16.8vw, 4.5rem);
+  }
+
+  .hero-text {
+    font-size: 0.96rem;
+  }
+
+  .hero-visual {
+    min-height: 440px;
+  }
+
+  .flow-node {
+    width: 160px;
+    padding: 0.65rem;
+  }
+
+  .flow-node small { display: none; }
+  .node-output { width: 184px; }
+  .done-chip { display: none; }
+  .flow-toast { grid-template-columns: auto 1fr; }
+  .toast-time { display: none; }
+
+  .ticker-item {
+    gap: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .solution-card {
+    padding: 1.4rem;
+  }
+
+  .solution-featured {
+    min-height: 590px;
+  }
+
+  .mini-workflow {
+    right: -16px;
+  }
+
+  .mini-flow-row {
+    grid-template-columns: auto 16px 1fr auto;
+    font-size: 0.62rem;
+  }
+
+  .custom-orbit {
+    opacity: 0.75;
+  }
+
+  .process-step {
+    padding: 1.5rem;
+  }
+
+  .cta-panel {
+    min-height: 600px;
+    padding: 1.6rem;
+  }
+
+  .cta-action .button {
+    width: 100%;
+  }
+
+  .page-hero {
+    padding-top: 4.5rem;
+  }
+
+  .about-portrait-card {
+    padding: 0.55rem;
+    transform: none;
+  }
+
+  .portrait-caption {
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+  }
+
+  .contact-form-card,
+  .privacy-body {
+    padding: 1.35rem;
+    border-radius: 22px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-brand {
+    grid-column: auto;
+  }
+}

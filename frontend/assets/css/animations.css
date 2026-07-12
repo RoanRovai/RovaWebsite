@@ -1,0 +1,245 @@
+/* Page-load motion */
+.hero-copy > * {
+  opacity: 0;
+  animation: heroCopyIn 0.9s var(--ease-out) forwards;
+}
+
+.hero-copy > *:nth-child(1) { animation-delay: 0.08s; }
+.hero-copy > *:nth-child(2) { animation-delay: 0.18s; }
+.hero-copy > *:nth-child(3) { animation-delay: 0.32s; }
+.hero-copy > *:nth-child(4) { animation-delay: 0.44s; }
+.hero-copy > *:nth-child(5) { animation-delay: 0.56s; }
+
+@keyframes heroCopyIn {
+  from { opacity: 0; transform: translateY(34px); filter: blur(8px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+.hero-visual-wrap {
+  opacity: 0;
+  animation: heroVisualIn 1.15s var(--ease-out) 0.25s forwards;
+}
+
+@keyframes heroVisualIn {
+  from { opacity: 0; transform: translate3d(0, calc(var(--parallax-y, 0px) + 45px), 0) scale(0.95); }
+  to { opacity: 1; transform: translate3d(0, var(--parallax-y, 0px), 0) scale(1); }
+}
+
+[data-parallax] {
+  transform: translate3d(0, var(--parallax-y, 0px), 0);
+}
+
+.page-hero .eyebrow,
+.page-hero h1,
+.page-hero .page-lead,
+.page-hero .about-portrait-card,
+.page-hero .hero-actions {
+  opacity: 0;
+  animation: heroCopyIn 0.9s var(--ease-out) forwards;
+}
+
+.page-hero h1 { animation-delay: 0.1s; }
+.page-hero .page-lead { animation-delay: 0.22s; }
+.page-hero .hero-actions { animation-delay: 0.34s; }
+.page-hero .about-portrait-card { animation-delay: 0.28s; }
+
+/* IntersectionObserver reveals */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(42px);
+  filter: blur(8px);
+  transition:
+    opacity 0.85s var(--ease-out),
+    transform 0.85s var(--ease-out),
+    filter 0.85s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.js .reveal.reveal-left { transform: translateX(-42px); }
+.js .reveal.reveal-right { transform: translateX(42px); }
+.js .reveal.reveal-scale { transform: translateY(24px) scale(0.96); }
+
+.js .reveal.in-view {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+  filter: blur(0);
+}
+
+/* Existing class compatibility for legal/legacy pages */
+.js .fade-in {
+  opacity: 0;
+  transform: translateY(36px);
+  filter: blur(7px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out), filter 0.8s var(--ease-out);
+}
+
+.js .fade-in.visible,
+.js .fade-in.in-view {
+  opacity: 1;
+  transform: translate(0, 0);
+  filter: blur(0);
+}
+
+.js .fade-left { transform: translateX(-36px); }
+.js .fade-right { transform: translateX(36px); }
+.js .fade-scale { transform: translateY(20px) scale(0.96); }
+
+/* Hero workflow */
+.flow-line-active {
+  animation: lineTravel 1.2s linear infinite;
+}
+
+@keyframes lineTravel {
+  to { stroke-dashoffset: -44; }
+}
+
+.flow-node {
+  animation: nodeFloat 5s ease-in-out infinite;
+}
+
+.node-ai { animation-delay: -1.7s; }
+.node-output { animation-delay: -3.2s; }
+
+@keyframes nodeFloat {
+  0%, 100% { margin-top: 0; }
+  50% { margin-top: -7px; }
+}
+
+.flow-toast {
+  opacity: 0;
+  animation: toastIn 0.7s var(--ease-spring) 1.25s forwards, toastBreathe 4s ease-in-out 2.2s infinite;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes toastBreathe {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.floating-chip {
+  animation: chipFloat 5s ease-in-out infinite;
+}
+
+.chip-custom { animation-delay: -2.3s; }
+
+@keyframes chipFloat {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+.live-badge i,
+.status-dot,
+.card-status i {
+  animation: livePulse 2.3s ease-out infinite;
+}
+
+@keyframes livePulse {
+  0% { box-shadow: 0 0 0 0 rgba(116, 217, 159, 0.32); }
+  70% { box-shadow: 0 0 0 7px rgba(116, 217, 159, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(116, 217, 159, 0); }
+}
+
+.status-dot {
+  animation-name: orangePulse;
+}
+
+@keyframes orangePulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 107, 26, 0.35); }
+  70% { box-shadow: 0 0 0 7px rgba(255, 107, 26, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 107, 26, 0); }
+}
+
+.scroll-cue i::after {
+  animation: scrollCue 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollCue {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+/* Continuous supporting motion */
+.ticker-track {
+  animation: tickerMove 28s linear infinite;
+}
+
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+@keyframes tickerMove {
+  to { transform: translateX(-50%); }
+}
+
+.typing-pulse i {
+  animation: typingDot 1.2s ease-in-out infinite;
+}
+
+.typing-pulse i:nth-child(2) { animation-delay: 0.16s; }
+.typing-pulse i:nth-child(3) { animation-delay: 0.32s; }
+
+@keyframes typingDot {
+  0%, 60%, 100% { opacity: 0.35; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-3px); }
+}
+
+.custom-orbit {
+  animation: orbitTurn 18s linear infinite;
+}
+
+.custom-orbit span {
+  animation: orbitTurn 18s linear infinite reverse;
+}
+
+@keyframes orbitTurn {
+  to { transform: rotate(360deg); }
+}
+
+.cta-rings {
+  transform: scale(calc(0.92 + var(--process-progress, 0) * 0.08));
+  animation: ringsFloat 8s ease-in-out infinite;
+}
+
+@keyframes ringsFloat {
+  0%, 100% { translate: 0 0; }
+  50% { translate: -12px 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .js .reveal,
+  .js .fade-in,
+  .hero-copy > *,
+  .hero-visual-wrap,
+  .page-hero .eyebrow,
+  .page-hero h1,
+  .page-hero .page-lead,
+  .page-hero .about-portrait-card,
+  .page-hero .hero-actions {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  [data-parallax],
+  .process-step {
+    transform: none !important;
+  }
+
+  .process-step { opacity: 1; }
+}

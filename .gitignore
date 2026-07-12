@@ -1,0 +1,24 @@
+# Environment variables — nooit committen
+.env
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Node (voor later)
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Prijslijst
+prijslijst.html
+Prijslijst.pdf
+
+
