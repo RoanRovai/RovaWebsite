@@ -371,7 +371,8 @@
   }
 
   .hero-copy h1 {
-    font-size: clamp(3.2rem, 16.8vw, 4.5rem);
+    font-size: clamp(3rem, 15vw, 5rem);
+    overflow-wrap: break-word;
   }
 
   .hero-text {
