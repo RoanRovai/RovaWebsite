@@ -2,10 +2,10 @@
   position: fixed;
   z-index: 219;
   right: 1.4rem;
-  bottom: calc(1.4rem + 60px + 0.85rem);
+  bottom: calc(1.4rem + 60px + 0.75rem);
   display: grid;
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   place-items: center;
   color: var(--text);
   background: var(--surface);
