@@ -103,8 +103,19 @@
   .about-hero-grid,
   .contact-hero-grid,
   .about-story-grid,
-  .contact-layout {
+  .contact-layout,
+  .project-card {
     grid-template-columns: 1fr;
+  }
+
+  .project-media {
+    min-height: 220px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .project-media-dark {
+    border-bottom-color: var(--line-light);
   }
 
   .hero-grid {
