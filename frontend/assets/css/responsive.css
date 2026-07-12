@@ -305,10 +305,6 @@
     grid-template-columns: 38px 1fr;
   }
 
-  .outcome-arrow {
-    display: none;
-  }
-
   .cta-panel {
     min-height: 560px;
     padding: 2.2rem;
