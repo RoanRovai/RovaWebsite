@@ -1675,37 +1675,6 @@
   border-right-color: var(--line-light);
 }
 
-.project-badge {
-  position: absolute;
-  top: 1.4rem;
-  left: 1.4rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0.8rem;
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  font-size: 0.66rem;
-  font-weight: 700;
-  color: var(--text);
-  backdrop-filter: blur(8px);
-}
-
-.project-media-dark .project-badge {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
-.project-badge i {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--success);
-  box-shadow: 0 0 0 3px rgba(116, 217, 159, 0.28);
-}
-
 /* Flow visual (project 1) */
 .project-visual-flow {
   display: flex;
