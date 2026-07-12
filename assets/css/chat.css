@@ -1,8 +1,4 @@
 .back-to-top {
-  position: fixed;
-  z-index: 219;
-  right: 1.4rem;
-  bottom: calc(1.4rem + 60px + 0.75rem);
   display: grid;
   width: 60px;
   height: 60px;
@@ -13,6 +9,7 @@
   border-radius: 50%;
   box-shadow: var(--shadow-sm);
   cursor: pointer;
+  pointer-events: none;
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
@@ -20,6 +17,7 @@
 }
 
 .back-to-top.visible {
+  pointer-events: auto;
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -291,8 +289,6 @@
   }
 
   .back-to-top {
-    right: 0.75rem;
-    bottom: calc(0.75rem + 54px + 0.75rem);
     width: 54px;
     height: 54px;
   }
