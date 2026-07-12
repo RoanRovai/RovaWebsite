@@ -80,9 +80,19 @@ document.querySelectorAll("#year").forEach((element) => {
 // Back to top
 const backToTop = document.getElementById("back-to-top");
 
-backToTop?.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
-});
+if (backToTop) {
+  backToTop.addEventListener("click", () => {
+    const behavior = prefersReducedMotion ? "auto" : "smooth";
+    try {
+      window.scrollTo({ top: 0, left: 0, behavior });
+    } catch {
+      window.scrollTo(0, 0);
+    }
+    // Fallback for browsers/pages where the above is blocked
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  });
+}
 
 // Contact form
 const contactForm = document.getElementById("contact-form");
@@ -221,7 +231,7 @@ function updateOnScroll() {
   const pageProgress = scrollMax > 0 ? window.scrollY / scrollMax : 0;
   progressBar.style.transform = `scaleX(${pageProgress})`;
   header?.classList.toggle("scrolled", window.scrollY > 12);
-  backToTop?.classList.toggle("visible", window.scrollY > window.innerHeight * 0.6);
+  backToTop?.classList.toggle("visible", window.scrollY > 300);
 
   if (!prefersReducedMotion && window.innerWidth > 760) {
     const viewportCenter = window.innerHeight / 2;
