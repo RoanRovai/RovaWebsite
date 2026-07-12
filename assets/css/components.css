@@ -1607,6 +1607,10 @@
   border-bottom: 1px solid var(--line);
 }
 
+.client-head-text {
+  min-width: 0;
+}
+
 .client-mark {
   display: grid;
   flex: 0 0 46px;
