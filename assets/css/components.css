@@ -322,7 +322,7 @@
 
 .hero-visual {
   position: relative;
-  min-height: 540px;
+  min-height: 452px;
   overflow: hidden;
   color: #fff;
   background: linear-gradient(145deg, #191b18, #0d0e0c 72%);
@@ -407,7 +407,7 @@
 
 .flow-board {
   position: relative;
-  height: 476px;
+  height: 388px;
   overflow: hidden;
 }
 
