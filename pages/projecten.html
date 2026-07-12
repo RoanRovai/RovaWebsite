@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projecten | Rova — Praktische AI-automatisering in de praktijk</title>
+  <meta name="description" content="Een greep uit projecten die Rova bouwde: browserautomatiseringen en AI-gestuurde orderverwerking die dagelijks tijd besparen.">
+  <meta name="theme-color" content="#111210">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body class="inner-page">
+  <a class="skip-link" href="#main-content">Ga naar de inhoud</a>
+
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="container">
+        <nav class="nav" aria-label="Hoofdnavigatie">
+          <a class="logo" href="../index.html" aria-label="Rova home">
+            <span class="logo-mark" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 20 20" fill="none"><path d="M12 2L5 11h5.5L9 18l8-9h-5.5L12 2Z" fill="currentColor"/></svg>
+            </span>
+            <span>Rova</span>
+          </a>
+          <button class="menu-toggle" type="button" aria-label="Menu openen" aria-expanded="false" aria-controls="main-nav"><span></span><span></span></button>
+          <div class="nav-links" id="main-nav">
+            <a href="../index.html">Home</a>
+            <a href="../index.html#oplossingen">Oplossingen</a>
+            <a href="../index.html#hoe-het-werkt">Aanpak</a>
+            <a class="active" href="projecten.html" aria-current="page">Projecten</a>
+            <a href="about.html">Over Rova</a>
+            <a class="nav-cta" href="contact.html">Bespreek je idee <span aria-hidden="true">↗</span></a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="page-hero">
+        <div class="container">
+          <p class="eyebrow">Projecten</p>
+          <h1>Automatisering die <span class="accent-text">echt werk</span> uit handen neemt.</h1>
+          <p class="page-lead">Een greep uit oplossingen die ik voor bedrijven bouwde. Geen demo's, maar tools die dagelijks draaien en aantoonbaar tijd besparen. Hieronder lees je per project wat het doet en welk probleem het oplost.</p>
+          <div class="project-stats" aria-hidden="true">
+            <div class="project-stat"><strong>3</strong><small>Automatiseringen in gebruik</small></div>
+            <div class="project-stat"><strong>10+</strong><small>Verkoopplatformen ondersteund</small></div>
+            <div class="project-stat"><strong>0</strong><small>Handmatig kopieerwerk</small></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section projects-section">
+        <div class="container">
+          <div class="section-heading split-heading reveal">
+            <div>
+              <p class="eyebrow">In de praktijk</p>
+              <h2>Gebouwd voor een <span class="accent-text">echte werkvloer.</span></h2>
+            </div>
+            <p class="section-intro">Deze projecten ontwikkelde ik voor Autohandel Didier (CARTRADING &amp; CARPARTS). Elk vertrekt vanuit één vraag: welke handeling herhaalt zich elke dag en kan de computer overnemen?</p>
+          </div>
+
+          <div class="projects-list">
+
+            <article class="project-card reveal">
+              <div class="project-media" aria-hidden="true">
+                <span class="project-badge"><i></i> Actief in gebruik</span>
+                <div class="project-visual project-visual-flow">
+                  <div class="pv-window">
+                    <span class="pv-label">Bron</span>
+                    <strong>Voertuig herkend</strong>
+                  </div>
+                  <div class="pv-arrow"><span></span></div>
+                  <div class="pv-window pv-window-accent">
+                    <span class="pv-label">AutoScout24</span>
+                    <strong>Zoeklink geopend</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="project-body">
+                <div class="card-topline">
+                  <span class="card-index">01</span>
+                  <span class="card-tag">Browserautomatisering</span>
+                </div>
+                <h3>AutoScout24 Bot — IVO &amp; re-youzcar</h3>
+                <p class="project-lead">Twee bots met dezelfde motor: ze houden de actieve auto in de gaten (in IVO/Informex of op re-youzcar.fr) en openen automatisch de bijhorende zoekresultaten op AutoScout24 — zelfde merk, model, bouwjaar en brandstof.</p>
+                <p>Vroeger moest een medewerker die gegevens telkens overtypen en handmatig op AutoScout24 zoeken om prijzen te vergelijken. Deze tool doet dat in één beweging: zodra een nieuw voertuig verschijnt, wordt er automatisch een correcte zoeklink opgebouwd en geopend in een tweede venster. Rommelige modelnamen worden opgeschoond en er wordt bewust niets geraden — bij twijfel opent de bot liever niets dan een foute link.</p>
+                <ul class="project-points">
+                  <li>Herkent het voertuig via vaste paginagegevens, geen giswerk</li>
+                  <li>Bouwt en opent de AutoScout24-zoeklink volautomatisch</li>
+                  <li>Één klaargezette <code>.exe</code> — geen installatie of code nodig</li>
+                  <li>Twee varianten (IVO en re-youzcar) op dezelfde codebasis</li>
+                </ul>
+                <div class="project-tags">
+                  <span>Python</span><span>Playwright</span><span>Chrome DevTools Protocol</span><span>Windows</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card reveal">
+              <div class="project-media project-media-dark" aria-hidden="true">
+                <span class="project-badge"><i></i> Actief in gebruik</span>
+                <div class="project-visual project-visual-pipeline">
+                  <div class="pv-step"><span class="pv-dot">1</span> Order herkennen</div>
+                  <div class="pv-step"><span class="pv-dot pv-dot-ai">AI</span> Claude Vision leest scherm</div>
+                  <div class="pv-step"><span class="pv-dot">2</span> Platform bepalen</div>
+                  <div class="pv-step pv-step-done"><span class="pv-check">✓</span> Order afgerond</div>
+                </div>
+              </div>
+              <div class="project-body">
+                <div class="card-topline">
+                  <span class="card-index">02</span>
+                  <span class="card-tag light">AI-gestuurd &amp; op maat</span>
+                </div>
+                <h3>Automatische Afronding — orderverwerking</h3>
+                <p class="project-lead">Een automatisering die openstaande orders in Autonet Automate zelfstandig verwerkt en afrondt. Ze maakt een screenshot van de orderlijst, laat Claude Vision bepalen welke order aan de beurt is, herkent het verkoopplatform en start de juiste stap-voor-stap-workflow.</p>
+                <p>Orderverwerking betekende voorheen tientallen keer per dag dezelfde reeks klikken: relatie kiezen, verzender selecteren, factuur afronden, printopties afhandelen, e-mail versturen en terug naar de lijst. Deze tool neemt die volledige lus over voor elk verkoopplatform apart, met gedeelde stappen waar dat kan. Loopt een order vast, dan wordt die netjes geblokkeerd zodat hij niet telkens opnieuw wordt opgepikt. Een operator-dashboard toont live de status, voortgang en geschiedenis.</p>
+                <ul class="project-points">
+                  <li>Claude Vision leest de schermen en beslist wat er moet gebeuren</li>
+                  <li>Aparte workflows voor 9+ verkoopplatformen (B-Parts, eBay, Opisto, Ovoko …)</li>
+                  <li>Live operator-dashboard met status, voortgang en geblokkeerde orders</li>
+                  <li>Pauzeren/hervatten met één toets, plus kostenregistratie per order</li>
+                </ul>
+                <div class="project-tags">
+                  <span>Python</span><span>Claude Vision</span><span>Tkinter dashboard</span><span>Automatisering</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="section cta-section">
+        <div class="container">
+          <div class="cta-panel reveal">
+            <div class="cta-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="cta-copy">
+              <p class="eyebrow eyebrow-on-dark">Zelf iets in gedachten?</p>
+              <h2>Herken je dit repetitieve werk in je eigen bedrijf?</h2>
+              <p>Vertel me welke handeling zich elke dag herhaalt. We bekijken samen of automatisering of AI een slimme volgende stap is.</p>
+            </div>
+            <div class="cta-action">
+              <a class="button light" href="contact.html">Bespreek je idee <span aria-hidden="true">→</span></a>
+              <small>Vrijblijvende kennismaking</small>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-main">
+        <div class="footer-brand">
+          <a class="logo logo-footer" href="../index.html"><span class="logo-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 20 20" fill="none"><path d="M12 2L5 11h5.5L9 18l8-9h-5.5L12 2Z" fill="currentColor"/></svg></span><span>Rova</span></a>
+          <p>Praktische AI-automatisering voor groeiende bedrijven.</p>
+          <span class="footer-location"><i aria-hidden="true"></i> Kortrijk, België</span>
+        </div>
+        <div class="footer-column"><strong>Navigatie</strong><a href="../index.html#oplossingen">Oplossingen</a><a href="../index.html#hoe-het-werkt">Aanpak</a><a href="projecten.html">Projecten</a><a href="about.html">Over Rova</a><a href="contact.html">Contact</a></div>
+        <div class="footer-column"><strong>Contact</strong><a href="tel:+32492405978">+32&nbsp;492&nbsp;40&nbsp;59&nbsp;78</a><a href="mailto:roanvdmb@gmail.com">roanvdmb@gmail.com</a><a href="privacy.html">Privacybeleid</a></div>
+      </div>
+      <div class="container footer-bottom"><p>&copy; <span id="year"></span> Rova. Alle rechten voorbehouden.</p><p>Tijd. Efficiëntie. Resultaat.</p></div>
+    </footer>
+  </div>
+
+  <div class="cookie-banner hidden" id="cookie-banner">
+    <p class="cookie-text">Wij gebruiken optionele cookies om de website te verbeteren. Lees ons <a href="privacy.html">privacybeleid</a>.</p>
+    <div class="cookie-actions"><button class="cookie-decline" id="cookie-decline" type="button">Weigeren</button><button class="cookie-accept" id="cookie-accept" type="button">Accepteren</button></div>
+  </div>
+  <script src="../assets/js/script.js"></script>
+</body>
+</html>
