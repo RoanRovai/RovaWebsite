@@ -32,6 +32,7 @@
 .page-hero .eyebrow,
 .page-hero h1,
 .page-hero .page-lead,
+.page-hero .projects-count-copy,
 .page-hero .about-portrait-card,
 .page-hero .hero-actions {
   opacity: 0;
@@ -40,7 +41,8 @@
 
 .page-hero h1 { animation-delay: 0.1s; }
 .page-hero .page-lead { animation-delay: 0.22s; }
-.page-hero .hero-actions { animation-delay: 0.34s; }
+.page-hero .projects-count-copy { animation-delay: 0.3s; }
+.page-hero .hero-actions { animation-delay: 0.4s; }
 .page-hero .about-portrait-card { animation-delay: 0.28s; }
 
 /* IntersectionObserver reveals */
@@ -134,7 +136,10 @@
 
 .live-badge i,
 .status-dot,
-.card-status i {
+.card-status i,
+.client-live i,
+.window-live i,
+.dashboard-footer i {
   animation: livePulse 2.3s ease-out infinite;
 }
 
@@ -229,6 +234,7 @@
   .page-hero .eyebrow,
   .page-hero h1,
   .page-hero .page-lead,
+  .page-hero .projects-count-copy,
   .page-hero .about-portrait-card,
   .page-hero .hero-actions {
     opacity: 1;

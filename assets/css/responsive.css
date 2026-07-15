@@ -458,3 +458,295 @@
     grid-column: auto;
   }
 }
+
+/* Projects page */
+@media (max-width: 1120px) {
+  .projects-hero-editorial {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.52fr);
+    gap: 4rem;
+  }
+
+  .projects-hero h1 {
+    font-size: clamp(3.8rem, 6.7vw, 5.9rem);
+  }
+
+  .case-study,
+  .case-study-reverse {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  }
+
+  .case-visual {
+    min-height: 720px;
+    padding: 1.35rem;
+  }
+
+}
+
+@media (max-width: 960px) {
+  .projects-hero-editorial,
+  .case-study,
+  .case-study-reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-hero-editorial {
+    gap: 3.5rem;
+  }
+
+  .projects-hero-heading {
+    max-width: 760px;
+  }
+
+  .projects-hero-intro {
+    max-width: 620px;
+  }
+
+  .client-proof {
+    grid-template-columns: 1fr auto;
+    padding-block: 1.2rem;
+  }
+
+  .client-scope {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: start;
+  }
+
+  .case-study-reverse .case-visual,
+  .case-study-reverse .case-copy {
+    grid-column: 1;
+  }
+
+  .case-study-reverse .case-visual {
+    grid-row: 1;
+    border-left: 0;
+  }
+
+  .case-study-reverse .case-copy {
+    grid-row: 2;
+  }
+
+  .case-visual {
+    min-height: 600px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .case-study-dark .case-visual {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .case-window,
+  .order-dashboard {
+    width: min(100%, 570px);
+  }
+}
+
+@media (max-width: 760px) {
+  .projects-hero {
+    min-height: auto;
+    padding: 4.5rem 0 5.5rem;
+  }
+
+  .projects-hero h1 {
+    max-width: 100%;
+    font-size: clamp(3.25rem, 10vw, 5.2rem);
+  }
+
+  .projects-hero-intro .page-lead {
+    font-size: 0.95rem;
+  }
+
+  .projects-hero-intro {
+    padding-top: 1.5rem;
+  }
+
+  .client-proof {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .client-scope,
+  .client-live {
+    grid-column: auto;
+    grid-row: auto;
+    justify-content: start;
+  }
+
+  .case-copy {
+    padding: 2rem;
+  }
+
+  .case-copy h3 {
+    font-size: clamp(2.15rem, 8.5vw, 3rem);
+  }
+
+  .case-story-grid,
+  .variant-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .case-story-grid > div {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 0.8rem;
+  }
+
+  .case-story-grid span {
+    grid-row: 1 / span 2;
+    margin: 0;
+  }
+
+  .case-visual {
+    min-height: 540px;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .projects-hero-editorial {
+    gap: 2.75rem;
+  }
+
+  .projects-hero h1 {
+    font-size: clamp(2.9rem, 12vw, 3.8rem);
+  }
+
+  .projects-count-copy {
+    font-size: 0.78rem;
+  }
+
+  .client-identity {
+    align-items: flex-start;
+  }
+
+  .client-identity strong {
+    font-size: 0.82rem;
+    line-height: 1.35;
+  }
+
+  .client-scope {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .client-scope i {
+    display: none;
+  }
+
+  .case-list {
+    gap: 1.4rem;
+  }
+
+  .case-study {
+    border-radius: 24px;
+  }
+
+  .case-visual {
+    min-height: auto;
+    padding: 1rem;
+  }
+
+  .case-window,
+  .order-dashboard {
+    border-radius: 18px;
+  }
+
+  .case-window-bar > strong {
+    display: none;
+  }
+
+  .compare-flow {
+    padding: 0.75rem;
+  }
+
+  .compare-sources {
+    gap: 0.4rem;
+  }
+
+  .compare-source {
+    grid-template-columns: auto 1fr;
+    gap: 0.45rem;
+    padding: 0.6rem;
+  }
+
+  .compare-source > i {
+    display: none;
+  }
+
+  .source-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .compare-source strong {
+    font-size: 0.58rem;
+  }
+
+  .vehicle-data span {
+    font-size: 0.49rem;
+  }
+
+  .bid-memory-chip {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    max-width: none;
+    margin-top: 0.75rem;
+  }
+
+  .case-copy {
+    padding: 1.4rem;
+  }
+
+  .case-topline {
+    align-items: flex-start;
+  }
+
+  .case-count {
+    font-size: 0.57rem;
+  }
+
+  .case-copy h3 {
+    font-size: 2rem;
+  }
+
+  .case-lead {
+    font-size: 0.88rem;
+  }
+
+  .case-result {
+    align-items: start;
+  }
+
+  .dashboard-body {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .dashboard-sidebar {
+    display: none;
+  }
+
+  .dashboard-main {
+    padding: 0.85rem;
+  }
+
+  .order-capabilities {
+    grid-template-columns: 1fr;
+  }
+
+  .order-capabilities > div {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 0.65rem;
+    text-align: left;
+  }
+
+  .order-capabilities > div strong {
+    font-size: 1.8rem;
+  }
+}
