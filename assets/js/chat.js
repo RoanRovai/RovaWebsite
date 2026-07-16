@@ -1,4 +1,7 @@
-const BACKEND_URL = "https://aibed-a5du.onrender.com/chat";
+const isLocalhost = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+const BACKEND_URL = isLocalhost
+  ? "http://127.0.0.1:8000/chat"
+  : "https://aibed-a5du.onrender.com/chat";
 
 const toggleBtn = document.getElementById("chat-toggle");
 const chatWindow = document.getElementById("chat-window");
