@@ -18,7 +18,7 @@ toggleBtn?.addEventListener("click", () => {
   toggleBtn.setAttribute("aria-expanded", String(isOpen));
   toggleBtn.setAttribute("aria-label", isOpen ? "Chat sluiten" : "Chat openen");
   if (isOpen && history.length === 0) {
-    addBubble("bot", "Hallo! Ik ben de assistent van Rova. Waarmee kan ik je helpen?");
+    addBubble("bot", "Hallo! Ik ben de assistent van Rovai. Waarmee kan ik je helpen?");
   }
   if (isOpen) inputEl.focus();
 });
