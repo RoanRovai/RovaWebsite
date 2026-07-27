@@ -69,7 +69,7 @@ De tool heeft een operator-dashboard met live status, voortgang, geschiedenis en
 - Verwijs voor het volledige overzicht naar **Projecten** in het menu.
 
 ## Contact
-- E-mail: roanvdmb@gmail.com
+- E-mail: roan@rovai.be
 - Telefoon: +32 492 40 59 78
 - Contactformulier: via de knop **Bespreek je idee** op de website.
 
