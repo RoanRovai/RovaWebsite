@@ -113,7 +113,7 @@ if (contactForm) {
     if (errorMessage) errorMessage.style.display = "none";
 
     try {
-      const response = await fetch("https://formspree.io/f/xaqlepyb", {
+      const response = await fetch("https://formspree.io/f/xnjekzqr", {
         method: "POST",
         body: new FormData(contactForm),
         headers: { Accept: "application/json" },
