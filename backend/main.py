@@ -1,22 +1,41 @@
-from fastapi import FastAPI, Request
+import logging
+
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from openai import OpenAI
+from pydantic import BaseModel, Field
+from openai import APIError, APITimeoutError, OpenAI, RateLimitError
 import os
 from dotenv import load_dotenv
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
+from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
 
 load_dotenv()
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("rovai.chat")
+
 app = FastAPI()
+
+MODEL_NAME = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+MAX_HISTORY_MESSAGES = 10
 
 ALLOWED_ORIGINS = [
     "https://rovai.be",
     "https://www.rovai.be",
     "https://roanrovai.github.io",
 ]
+
+if os.getenv("ENVIRONMENT", "development") != "production":
+    ALLOWED_ORIGINS += [
+        "http://localhost:5500",
+        "http://127.0.0.1:5500",
+    ]
+
+# Render zet de app achter een reverse proxy: zonder dit ziet get_remote_address
+# altijd het proxy-IP, waardoor de rate limit effectief gedeeld wordt door alle bezoekers.
+app.add_middleware(ProxyHeadersMiddleware, trusted_hosts="*")
 
 app.add_middleware(
     CORSMiddleware,
@@ -73,8 +92,18 @@ De tool heeft een operator-dashboard met live status, voortgang, geschiedenis en
 - Telefoon: +32 492 40 59 78
 - Contactformulier: via de knop **Bespreek je idee** op de website.
 
+## Doorverwijzen naar het contactformulier
+Wanneer je antwoord de bezoeker aanraadt om contact op te nemen, een intake voor te stellen, of wanneer de bezoeker duidelijk interesse toont om iets concreets te bespreken, prijs of haalbaarheid vraagt:
+1. Som altijd de drie contactopties op als lijst (e-mail, telefoon, contactformulier — zie hierboven).
+2. Sluit je antwoord daarna **altijd** af met exact dit token op een eigen regel, zonder verdere opmaak eromheen:
+[CONTACT_CTA]
+
+Kortom: elke keer dat je in je antwoord verwijst naar een intake, een gesprek met Roan, of contact opnemen, horen de opgesomde contactopties en dit token er automatisch bij. Gebruik het token maximaal één keer per antwoord, en nooit bij algemene informatieve vragen zonder contactadvies.
+
 ## Gedragsregels — volg deze altijd
 **Beknoptheid:** Antwoord kort, helder en behulpzaam. Gebruik alleen een opsomming wanneer dat de vraag echt duidelijker beantwoordt.
+
+**Opmaak:** Gebruik nooit geneste lijsten (bv. een genummerd punt met daaronder een apart streepje). Zet de toelichting bij een genummerd of opgesomd punt gewoon in dezelfde regel, na het punt zelf.
 
 **Focus:** Beantwoord alleen vragen over Rovai, de diensten, de projecten, automatisering, procesverbetering of AI voor bedrijven. Zeg bij andere onderwerpen vriendelijk: "Daar kan ik je niet mee helpen, maar met vragen over automatisering of AI voor jouw bedrijf help ik je graag verder."
 
@@ -93,21 +122,38 @@ De tool heeft een operator-dashboard met live status, voortgang, geschiedenis en
 
 class Message(BaseModel):
     role: str
-    content: str
+    content: str = Field(min_length=1, max_length=2000)
 
 
 class ChatRequest(BaseModel):
     messages: list[Message]
 
 
+@app.get("/health")
+async def health():
+    return {"status": "ok"}
+
+
 @app.post("/chat")
 @limiter.limit("10/minute")
 async def chat(request: Request, body: ChatRequest):
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[{"role": "system", "content": SYSTEM_PROMPT}]
-        + [{"role": m.role, "content": m.content} for m in body.messages],
-        max_tokens=400,
-        temperature=0.4,
-    )
+    recent_messages = body.messages[-MAX_HISTORY_MESSAGES:]
+    try:
+        response = client.chat.completions.create(
+            model=MODEL_NAME,
+            messages=[{"role": "system", "content": SYSTEM_PROMPT}]
+            + [{"role": m.role, "content": m.content} for m in recent_messages],
+            max_tokens=400,
+            temperature=0.4,
+        )
+    except RateLimitError:
+        logger.warning("OpenAI rate limit hit")
+        raise HTTPException(status_code=503, detail="De assistent is momenteel druk bezet. Probeer het zo opnieuw.")
+    except APITimeoutError:
+        logger.warning("OpenAI request timed out")
+        raise HTTPException(status_code=504, detail="De assistent antwoordde niet op tijd. Probeer het opnieuw.")
+    except APIError:
+        logger.exception("OpenAI API error")
+        raise HTTPException(status_code=502, detail="Er ging iets mis bij het ophalen van een antwoord.")
+
     return {"reply": response.choices[0].message.content}
