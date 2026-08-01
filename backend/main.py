@@ -15,7 +15,7 @@ app = FastAPI()
 ALLOWED_ORIGINS = [
     "https://rovai.be",
     "https://www.rovai.be",
-    "https://roanvdmb.github.io",
+    "https://roanrovai.github.io",
 ]
 
 app.add_middleware(
