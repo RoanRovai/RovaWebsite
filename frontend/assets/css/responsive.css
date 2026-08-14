@@ -194,7 +194,7 @@
     max-width: 12ch;
   }
 
-  .about-portrait-card {
+  .about-founders {
     width: min(100%, 520px);
     justify-self: start;
   }
@@ -435,7 +435,6 @@
 
   .about-portrait-card {
     padding: 0.55rem;
-    transform: none;
   }
 
   .portrait-caption {

@@ -161,9 +161,9 @@
 .about-hero-grid,
 .contact-hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(380px, 0.7fr);
+  grid-template-columns: minmax(0, 0.95fr) minmax(520px, 0.8fr);
   align-items: center;
-  gap: clamp(3rem, 8vw, 8rem);
+  gap: clamp(3rem, 6vw, 6rem);
 }
 
 .about-story-grid,
