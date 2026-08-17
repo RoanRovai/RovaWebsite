@@ -238,6 +238,10 @@
     grid-template-columns: 1.4fr repeat(2, 1fr);
     gap: 2.5rem;
   }
+
+  .footer-column:last-child a[href^="tel:"] {
+    white-space: normal;
+  }
 }
 
 @media (max-width: 760px) {

@@ -1443,9 +1443,12 @@
 .contact-detail {
   display: flex;
   align-items: center;
+  min-width: 0;
   gap: 0.85rem;
   font-size: 0.86rem;
   font-weight: 700;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
 .contact-detail > span {
@@ -1453,6 +1456,7 @@
   width: 40px;
   height: 40px;
   place-items: center;
+  flex-shrink: 0;
   color: var(--primary-dark);
   background: var(--primary-light);
   border-radius: 12px;
@@ -1604,7 +1608,13 @@
 .footer-column p {
   margin: 0;
   font-size: 0.8rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
   transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-column:last-child a[href^="tel:"] {
+  white-space: nowrap;
 }
 
 .footer-column a:hover {

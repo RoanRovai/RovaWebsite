@@ -89,7 +89,8 @@ De tool heeft een operator-dashboard met live status, voortgang, geschiedenis en
 
 ## Contact
 - E-mail: roan@rovai.be
-- Telefoon: +32 492 40 59 78
+- Telefoon: +32 492 40 59 78 (Roan Vandemeulebroucke)
+- Telefoon: +32 468 16 60 27 (Jules Bracke)
 - Contactformulier: via de knop **Bespreek je idee** op de website.
 
 ## Doorverwijzen naar het contactformulier
