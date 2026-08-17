@@ -194,9 +194,39 @@
     max-width: 12ch;
   }
 
+  /* Single column: keep the stack narrower than the container so the tilted
+     cards have slack to spill into on both sides instead of being clipped. */
+  .about-founders {
+    width: min(86%, 420px);
+    justify-self: center;
+  }
+
   .about-portrait-card {
-    width: min(100%, 520px);
-    justify-self: start;
+    transform: translate3d(-4%, -2%, 0) scale(1) rotate(-2deg);
+  }
+
+  .about-portrait-card[data-portrait-state="back"] {
+    transform: translate3d(7%, 7%, 0) scale(0.9) rotate(4.5deg);
+  }
+
+  .portrait-stack.is-interactive .about-portrait-card[data-portrait-state="front"]:hover {
+    transform: translate3d(-4%, -3.5%, 0) scale(1.015) rotate(-2.6deg);
+  }
+
+  .portrait-stack.is-interactive .about-portrait-card[data-portrait-state="back"]:hover {
+    transform: translate3d(8%, 5%, 0) scale(0.92) rotate(5.5deg);
+  }
+
+  @keyframes portraitLift {
+    0% { transform: translate3d(7%, 7%, 0) scale(0.9) rotate(4.5deg); }
+    38% { transform: translate3d(3%, -9%, 0) scale(0.96) rotate(6.5deg); }
+    100% { transform: translate3d(-4%, -2%, 0) scale(1) rotate(-2deg); }
+  }
+
+  @keyframes portraitTuck {
+    0% { transform: translate3d(-4%, -2%, 0) scale(1) rotate(-2deg); }
+    38% { transform: translate3d(-6%, 4%, 0) scale(0.92) rotate(-5deg); }
+    100% { transform: translate3d(7%, 7%, 0) scale(0.9) rotate(4.5deg); }
   }
 
   .about-story-grid,
@@ -207,6 +237,10 @@
   .footer-main {
     grid-template-columns: 1.4fr repeat(2, 1fr);
     gap: 2.5rem;
+  }
+
+  .footer-column:last-child a[href^="tel:"] {
+    white-space: normal;
   }
 }
 
@@ -435,7 +469,6 @@
 
   .about-portrait-card {
     padding: 0.55rem;
-    transform: none;
   }
 
   .portrait-caption {

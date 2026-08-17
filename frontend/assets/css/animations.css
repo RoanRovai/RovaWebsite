@@ -33,7 +33,7 @@
 .page-hero h1,
 .page-hero .page-lead,
 .page-hero .projects-count-copy,
-.page-hero .about-portrait-card,
+.page-hero .about-founders,
 .page-hero .hero-actions {
   opacity: 0;
   animation: heroCopyIn 0.9s var(--ease-out) forwards;
@@ -43,7 +43,7 @@
 .page-hero .page-lead { animation-delay: 0.22s; }
 .page-hero .projects-count-copy { animation-delay: 0.3s; }
 .page-hero .hero-actions { animation-delay: 0.4s; }
-.page-hero .about-portrait-card { animation-delay: 0.28s; }
+.page-hero .about-founders { animation-delay: 0.28s; }
 
 /* IntersectionObserver reveals */
 .js .reveal {
@@ -235,7 +235,7 @@
   .page-hero h1,
   .page-hero .page-lead,
   .page-hero .projects-count-copy,
-  .page-hero .about-portrait-card,
+  .page-hero .about-founders,
   .page-hero .hero-actions {
     opacity: 1;
     transform: none;
