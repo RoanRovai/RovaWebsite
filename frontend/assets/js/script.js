@@ -167,6 +167,61 @@ document.querySelectorAll(".spotlight-card").forEach((card) => {
   });
 });
 
+// Founder portraits: a stack of cards that swap places on click
+const portraitStack = document.querySelector("[data-portrait-stack]");
+
+if (portraitStack) {
+  const portraitCards = [...portraitStack.querySelectorAll("[data-portrait-card]")];
+  let portraitBusy = false;
+
+  function syncPortraitLabels() {
+    portraitCards.forEach((card) => {
+      const other = portraitCards.find((item) => item !== card);
+      const action = card.querySelector("[data-portrait-action]");
+      if (action && other) action.textContent = `— klik om ${other.dataset.portraitName} naar voren te halen`;
+    });
+  }
+
+  function swapPortraits() {
+    if (portraitBusy) return;
+
+    const incoming = portraitCards.find((card) => card.dataset.portraitState === "back");
+    const outgoing = portraitCards.find((card) => card.dataset.portraitState === "front");
+    if (!incoming || !outgoing) return;
+
+    portraitBusy = true;
+    incoming.dataset.portraitState = "front";
+    outgoing.dataset.portraitState = "back";
+    syncPortraitLabels();
+
+    if (prefersReducedMotion) {
+      portraitBusy = false;
+      return;
+    }
+
+    incoming.classList.add("is-lifting");
+    outgoing.classList.add("is-tucking");
+
+    let safetyTimer = 0;
+    const finishSwap = (event) => {
+      if (event && event.target !== incoming) return;
+      window.clearTimeout(safetyTimer);
+      incoming.classList.remove("is-lifting");
+      outgoing.classList.remove("is-tucking");
+      portraitBusy = false;
+    };
+
+    incoming.addEventListener("animationend", finishSwap, { once: true });
+    safetyTimer = window.setTimeout(finishSwap, 950);
+  }
+
+  if (portraitCards.length === 2) {
+    portraitCards.forEach((card) => card.addEventListener("click", swapPortraits));
+    portraitStack.classList.add("is-interactive");
+    syncPortraitLabels();
+  }
+}
+
 // Subtle depth on the hero visual
 const tiltElement = document.querySelector("[data-tilt]");
 

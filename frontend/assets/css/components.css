@@ -1247,43 +1247,90 @@
 .about-founders {
   position: relative;
   display: flex;
-  width: min(100%, 560px);
+  width: min(100%, 460px);
   flex-direction: column;
-  justify-self: end;
-  gap: 1.25rem;
+  /* Centred, not flush right: the rotated cards need slack on both sides */
+  justify-self: center;
+}
+
+.portrait-stack {
+  position: relative;
+  display: grid;
+  isolation: isolate;
 }
 
 .about-portrait-card {
   position: relative;
-  display: block;
+  grid-area: 1 / 1;
   width: 100%;
-  max-width: 500px;
   padding: 0.85rem;
+  font: inherit;
+  color: inherit;
+  text-align: left;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
-  transform: none;
+  transform: translate3d(-13%, -4%, 0) scale(1) rotate(-2.5deg);
+  transition:
+    transform 0.7s var(--ease-spring),
+    filter 0.55s var(--ease-out),
+    box-shadow 0.55s var(--ease-out);
 }
 
-.about-portrait-card:nth-child(2) {
-  align-self: flex-end;
+.about-portrait-card[data-portrait-state="front"] {
+  z-index: 2;
 }
 
-.about-portrait-card::before {
-  position: absolute;
-  z-index: -1;
-  right: -28px;
-  bottom: -28px;
-  width: 80%;
-  height: 80%;
-  content: "";
-  background: var(--primary);
-  border-radius: var(--radius-lg);
-  opacity: 0.18;
+.about-portrait-card[data-portrait-state="back"] {
+  z-index: 1;
+  filter: saturate(0.55) brightness(0.94);
+  box-shadow: 0 18px 48px rgba(25, 22, 16, 0.13);
+  transform: translate3d(5%, 9%, 0) scale(0.88) rotate(6.5deg);
+}
+
+/* Interactive only once the swap script is wired up */
+.portrait-stack.is-interactive .about-portrait-card {
+  cursor: pointer;
+}
+
+.portrait-stack.is-interactive .about-portrait-card[data-portrait-state="front"]:hover {
+  transform: translate3d(-13%, -5.5%, 0) scale(1.015) rotate(-3.1deg);
+}
+
+.portrait-stack.is-interactive .about-portrait-card[data-portrait-state="back"]:hover {
+  filter: saturate(0.95) brightness(1);
+  transform: translate3d(6%, 7%, 0) scale(0.9) rotate(7.5deg);
+}
+
+.about-portrait-card:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 7px;
+}
+
+/* Swap: the back card lifts up and over, the front card dips away and tucks under */
+@keyframes portraitLift {
+  0% { transform: translate3d(5%, 9%, 0) scale(0.88) rotate(6.5deg); }
+  38% { transform: translate3d(4%, -12%, 0) scale(0.95) rotate(8.5deg); }
+  100% { transform: translate3d(-13%, -4%, 0) scale(1) rotate(-2.5deg); }
+}
+
+@keyframes portraitTuck {
+  0% { transform: translate3d(-13%, -4%, 0) scale(1) rotate(-2.5deg); }
+  38% { transform: translate3d(-22%, 3%, 0) scale(0.93) rotate(-7deg); }
+  100% { transform: translate3d(5%, 9%, 0) scale(0.88) rotate(6.5deg); }
+}
+
+.about-portrait-card.is-lifting {
+  animation: portraitLift 0.72s var(--ease-out) both;
+}
+
+.about-portrait-card.is-tucking {
+  animation: portraitTuck 0.72s var(--ease-out) both;
 }
 
 .about-portrait-card img {
+  display: block;
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
