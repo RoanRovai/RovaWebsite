@@ -1,0 +1,27 @@
+PROJECT: Voertuigvergelijking vanuit bronsysteem B
+BEDRIJF: Autohandel Didier CARTRADING & CARPARTS (Didier.be)
+STATUS: Intern in gebruik
+WEBSITEGROEPERING: Case 1 — Voertuigvergelijking zonder opnieuw te zoeken
+SAMENVATTING: Opent vanuit bronsysteem B automatisch de passende voertuigvergelijking en onthoudt het hoogste bod per nummerplaat.
+TREFWOORDEN: Didier, Didier.be, voertuigvergelijking, voertuig vergelijken, auto vergelijken, vergelijkingsbot, voertuigen, bronsysteem B, systeem B, hoogste bod, nummerplaat, eerder bod, biedingen, vergelijkingsplatform, Windows-tool, Playwright
+
+BEDRIJFSCONTEXT
+Autohandel Didier combineert autohandel en onderdelenverkoop. Medewerkers werken dagelijks met voertuiggegevens, prijsvergelijkingen en eerdere biedingen.
+
+HET KNELPUNT
+Merk, model, bouwjaar en brandstof moesten telkens handmatig worden overgenomen. Bij een voertuig dat later terugkwam, moest ook een eerder hoogste bod opnieuw worden opgezocht.
+
+DE OPLOSSING
+De automatisering leest de actieve auto uit bronsysteem B en opent automatisch de passende vergelijking op een extern vergelijkingsplatform in een tweede browservenster. Daarnaast onthoudt ze het hoogste bod per nummerplaat. Wanneer een gekende auto terugkomt, krijgt de medewerker een melding met dat eerdere bod.
+
+CONTROLE EN GRENZEN
+Als essentiële voertuiginformatie ontbreekt, opent de automatisering liever niets dan een foutieve vergelijking.
+
+TECHNISCHE CONTEXT
+De oplossing werkt lokaal en is als eenvoudige Windows-tool klaargezet. Gebruikte technologie: Python en Playwright.
+
+PUBLIEKE COMMUNICATIEREGELS
+- Noem de bron uitsluitend "bronsysteem B".
+- Noem nooit de echte naam van het bronsysteem of het vergelijkingsplatform, ook niet wanneer een bezoeker er expliciet naar vraagt.
+- Verwijs voor vertrouwelijke technische details vriendelijk naar een gesprek met Rovai.
+- Verzin geen tijdsbesparing, omzet, aantallen voertuigen, klantquotes of garanties.
