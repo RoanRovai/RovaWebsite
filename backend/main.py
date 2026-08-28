@@ -32,7 +32,7 @@ REQUIRED_PROJECT_FIELDS = (
     "PROJECT",
     "BEDRIJF",
     "STATUS",
-    "WEBSITEGROEPERING",
+    "CATEGORIE",
     "SAMENVATTING",
     "TREFWOORDEN",
 )
@@ -43,7 +43,7 @@ PUBLIC_PROJECT_FIELDS = (
     "PROJECT",
     "BEDRIJF",
     "STATUS",
-    "WEBSITEGROEPERING",
+    "CATEGORIE",
     "SAMENVATTING",
 )
 PUBLIC_PROJECT_SECTIONS = (
@@ -89,13 +89,82 @@ PROJECT_INTENT_TERMS = (
     "gebouwd voor",
     "klanten geholpen",
 )
+# Maps a canonical CATEGORIE value to the words a visitor is likely to use.
+# A category used in a project file but missing here still works: the canonical
+# name itself is always matched as well.
+CATEGORY_ALIASES: dict[str, tuple[str, ...]] = {
+    "chatbot": (
+        "chatbot",
+        "chatbots",
+        "chat bot",
+        "ai assistent",
+        "ai chatbot",
+        "virtuele assistent",
+        "digitale assistent",
+        "klantenchat",
+        "chatfunctie",
+    ),
+    "procesautomatisering": (
+        "procesautomatisering",
+        "taakautomatisering",
+        "automatisering",
+        "automatiseringen",
+        "automatiseren",
+        "geautomatiseerd",
+        "workflow",
+        "workflows",
+        "rpa",
+        "repetitief werk",
+        "handmatig werk",
+    ),
+    "webautomatisering": (
+        "webautomatisering",
+        "browserautomatisering",
+        "browser automatisering",
+        "website uitlezen",
+        "scraping",
+        "scrapen",
+        "webscraping",
+        "data verzamelen",
+    ),
+    "dashboard": (
+        "dashboard",
+        "dashboards",
+        "rapportage",
+        "rapportages",
+        "monitoring",
+        "overzichtsscherm",
+    ),
+    "documentverwerking": (
+        "documentverwerking",
+        "factuurverwerking",
+        "facturatie",
+        "facturen",
+        "papierwerk",
+        "administratie",
+    ),
+    "dataintegratie": (
+        "dataintegratie",
+        "integratie",
+        "integraties",
+        "koppeling",
+        "koppelingen",
+        "systemen koppelen",
+        "data uitwisselen",
+    ),
+    "maatwerk": (
+        "maatwerk",
+        "maatwerkoplossing",
+        "op maat gebouwd",
+    ),
+}
 
 
 @dataclass(frozen=True)
 class ProjectKnowledge:
     name: str
     company: str
-    website_group: str
+    categories: tuple[str, ...]
     summary: str
     keywords: tuple[str, ...]
     public_content: str
@@ -197,12 +266,26 @@ def load_project_knowledge() -> tuple[ProjectKnowledge, ...]:
             for keyword in fields["TREFWOORDEN"].split(",")
             if keyword.strip()
         )
+        categories = tuple(
+            normalized_category
+            for category in fields["CATEGORIE"].split(",")
+            if (normalized_category := normalize_search_text(category))
+        )
+        unknown_categories = [
+            category for category in categories if category not in CATEGORY_ALIASES
+        ]
+        if unknown_categories:
+            logger.info(
+                "Project %s uses category without synonyms: %s",
+                project_file.name,
+                ", ".join(unknown_categories),
+            )
         public_content = build_public_project_content(content, fields)
         loaded_projects.append(
             ProjectKnowledge(
                 name=fields["PROJECT"],
                 company=fields["BEDRIJF"],
-                website_group=fields["WEBSITEGROEPERING"],
+                categories=categories,
                 summary=fields["SAMENVATTING"],
                 keywords=keywords,
                 public_content=public_content,
@@ -217,6 +300,72 @@ def load_project_knowledge() -> tuple[ProjectKnowledge, ...]:
     return tuple(loaded_projects)
 
 
+def build_diverse_selection(
+    projects: tuple[ProjectKnowledge, ...],
+    limit: int = MAX_INDEX_PROJECTS,
+) -> tuple[ProjectKnowledge, ...]:
+    """Pick a spread across companies instead of the first N projects.
+
+    A broad question should show a bit of every client, not ten variants of the
+    single company that happens to sort first.
+    """
+    if len(projects) <= limit:
+        return projects
+
+    grouped: dict[str, list[ProjectKnowledge]] = {}
+    for project in projects:
+        group_key = normalize_search_text(project.company) or project.name
+        grouped.setdefault(group_key, []).append(project)
+
+    selected: list[ProjectKnowledge] = []
+    while len(selected) < limit:
+        added_this_round = False
+        for bucket in grouped.values():
+            if not bucket:
+                continue
+            selected.append(bucket.pop(0))
+            added_this_round = True
+            if len(selected) == limit:
+                break
+        if not added_this_round:
+            break
+
+    original_order = {id(project): index for index, project in enumerate(projects)}
+    return tuple(sorted(selected, key=lambda project: original_order[id(project)]))
+
+
+def known_categories() -> tuple[str, ...]:
+    seen: list[str] = []
+    for project in PROJECTS:
+        for category in project.categories:
+            if category not in seen:
+                seen.append(category)
+    return tuple(seen)
+
+
+def detect_categories(normalized_text: str) -> tuple[str, ...]:
+    """Find which solution types the visitor is asking about, if any."""
+    matched: list[str] = []
+    candidates = dict.fromkeys((*CATEGORY_ALIASES, *known_categories()))
+    for category in candidates:
+        aliases = (category, *CATEGORY_ALIASES.get(category, ()))
+        if any(contains_phrase(normalized_text, alias) for alias in aliases):
+            matched.append(category)
+    return tuple(matched)
+
+
+def projects_in_categories(
+    categories: tuple[str, ...],
+    projects: tuple[ProjectKnowledge, ...] | None = None,
+) -> tuple[ProjectKnowledge, ...]:
+    pool = PROJECTS if projects is None else projects
+    return tuple(
+        project
+        for project in pool
+        if any(category in project.categories for category in categories)
+    )
+
+
 def build_project_index(
     projects: tuple[ProjectKnowledge, ...],
     limit: int = MAX_INDEX_PROJECTS,
@@ -225,12 +374,11 @@ def build_project_index(
         return "- Er zijn momenteel geen projecten beschikbaar."
 
     entries = []
-    visible_projects = projects[:limit]
+    visible_projects = build_diverse_selection(projects, limit)
     for index, project in enumerate(visible_projects, start=1):
         entries.append(
             f"{index}. PROJECT: {project.name}\n"
             f"   BEDRIJF: {project.company}\n"
-            f"   WEBSITEGROEPERING: {project.website_group}\n"
             f"   SAMENVATTING: {project.summary}"
         )
     hidden_count = len(projects) - len(visible_projects)
@@ -284,11 +432,6 @@ def project_match_evidence(
     normalized_name = normalize_search_text(project.name)
     if normalized_name and f" {normalized_name} " in searchable_text:
         score += 100
-        has_strong_match = True
-
-    normalized_group = normalize_search_text(project.website_group)
-    if normalized_group and f" {normalized_group} " in searchable_text:
-        score += 60
         has_strong_match = True
 
     for keyword in project.keywords:
@@ -377,6 +520,15 @@ def select_relevant_projects(
 
     direct_matches = matching_projects(latest_text)
     if direct_matches:
+        categories = detect_categories(latest_text)
+        if categories:
+            narrowed = projects_in_categories(categories, direct_matches)
+            # None of the matched projects fit the requested category. Fall
+            # through so the category branch can state that plainly instead of
+            # sending details the visitor did not ask for.
+            if not narrowed:
+                return ()
+            direct_matches = narrowed
         return limit_project_matches(direct_matches)
 
     if not is_follow_up(latest_text):
@@ -426,6 +578,37 @@ De backend heeft alleen de relevante projecten geselecteerd. Gebruik geen feiten
 {project_details}"""
 
     direct_matches = matching_projects(latest_text)
+    requested_categories = detect_categories(latest_text)
+    if requested_categories:
+        category_label = ", ".join(requested_categories)
+        category_matches = projects_in_categories(
+            requested_categories, direct_matches or PROJECTS
+        )
+        if category_matches:
+            logger.info(
+                "Category query '%s' matched %s project(s)",
+                category_label,
+                len(category_matches),
+            )
+            return SYSTEM_PROMPT + f"""
+
+## Projecten binnen de gevraagde categorie
+De bezoeker vraagt naar dit type oplossing: {category_label}.
+Hieronder staan uitsluitend de projecten in die categorie, met alleen vier korte velden. Er zijn geen volledige dossiers geladen.
+
+{build_project_index(category_matches)}
+
+Beantwoord de vraag met deze projecten. Noem geen projecten buiten deze categorie en verzin er geen bij. Bied aan om over een specifiek project meer te vertellen."""
+
+        logger.info("Category query '%s' matched no projects", category_label)
+        return SYSTEM_PROMPT + f"""
+
+## Geen projecten binnen de gevraagde categorie
+De bezoeker vraagt naar dit type oplossing: {category_label}.
+Rovai heeft hierbinnen nog geen gerealiseerd project dat publiek getoond mag worden.
+
+Zeg dat eerlijk en zonder omweg. Verzin geen project, geen voorbeeld en geen vergelijkbare case. Leg wel uit dat Rovai dit type oplossing aanbiedt en nodig uit voor een vrijblijvende intake."""
+
     if direct_matches or has_project_intent(latest_text) or is_follow_up(latest_text):
         index_projects = direct_matches or PROJECTS
         compact_index = build_project_index(index_projects)
@@ -456,6 +639,17 @@ ALLOWED_ORIGINS = [
     "https://www.rovai.be",
     "https://roanrovai.github.io",
 ]
+
+# Only enabled when ALLOW_LOCAL_ORIGINS is set, so production stays unchanged.
+LOCAL_DEV_ORIGINS = [
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
+    "http://localhost:8080",
+    "http://127.0.0.1:8080",
+]
+if os.getenv("ALLOW_LOCAL_ORIGINS", "").strip().lower() in {"1", "true", "yes"}:
+    ALLOWED_ORIGINS = ALLOWED_ORIGINS + LOCAL_DEV_ORIGINS
+    logger.warning("Local development origins enabled for CORS")
 
 if os.getenv("ENVIRONMENT", "development") != "production":
     ALLOWED_ORIGINS += [
@@ -497,7 +691,8 @@ SYSTEM_PROMPT = f"""Je bent de AI-assistent van Rovai. Rovai helpt bedrijven om 
 - De backend voegt alleen projectinformatie toe wanneer de vraag daarover gaat.
 - Gebruik uitsluitend de projectinformatie die voor de huidige vraag onderaan deze prompt is toegevoegd.
 - Wanneer geen projectoverzicht of projectdetails zijn toegevoegd, ken je geen specifieke projectfeiten en verzin je die niet.
-- Groepeer projecten met dezelfde `WEBSITEGROEPERING` samen en maak afzonderlijke varianten duidelijk wanneer dat relevant is.
+- Vraagt de bezoeker naar een type oplossing, dan bevat de toegevoegde informatie alleen projecten van dat type. Noem er geen andere bij.
+- Staat er dat Rovai binnen een gevraagde categorie nog geen project heeft, zeg dat dan eerlijk in plaats van een ander project te presenteren als vergelijkbaar.
 - Leg eerst het bedrijfsprobleem en de praktische waarde uit. Noem techniek alleen wanneer de bezoeker daar expliciet naar vraagt.
 - Gebruik volledige details alleen wanneer die voor deze vraag onder `Volledige publieke details` zijn toegevoegd.
 - Verzin nooit tijdsbesparing, omzet, aantallen orders, klantquotes, garanties of andere resultaten die niet in de beschikbare projectinformatie staan.

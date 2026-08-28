@@ -1,7 +1,7 @@
 PROJECT: Voertuigvergelijking vanuit bronsysteem A
 BEDRIJF: Autohandel Didier CARTRADING & CARPARTS (Didier.be)
 STATUS: Intern in gebruik
-WEBSITEGROEPERING: Case 1 — Voertuigvergelijking zonder opnieuw te zoeken
+CATEGORIE: procesautomatisering, webautomatisering
 SAMENVATTING: Leest voertuiggegevens uit bronsysteem A en opent automatisch de passende voertuigvergelijking zonder gegevens opnieuw over te typen.
 TREFWOORDEN: Didier, Didier.be, voertuigvergelijking, voertuig vergelijken, auto vergelijken, vergelijkingsbot, voertuigen, bronsysteem A, systeem A, voertuiggegevens, vergelijkingsplatform, Windows-tool, Playwright
 

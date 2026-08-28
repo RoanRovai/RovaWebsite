@@ -1,7 +1,7 @@
 PROJECT: Automatische orderafhandeling
 BEDRIJF: Autohandel Didier CARTRADING & CARPARTS (Didier.be)
 STATUS: Intern in gebruik
-WEBSITEGROEPERING: Case 2 — Openstaande orders automatisch afhandelen
+CATEGORIE: procesautomatisering, dashboard, documentverwerking
 SAMENVATTING: Herkent openstaande orders en voert per verkoopplatform de juiste afhandeling uit, met controle via een operator-dashboard.
 TREFWOORDEN: Didier, Didier.be, orderafhandeling, orderverwerking, orders, bestellingen, orderbot, openstaande orders, verkoopplatform, verkoopplatformen, dashboard, operator-dashboard, geblokkeerde orders, Peppol, facturatie
 
