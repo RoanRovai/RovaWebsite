@@ -1967,7 +1967,7 @@
 .projects-hero-editorial {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.5fr);
-  align-items: end;
+  align-items: center;
   gap: clamp(4rem, 7vw, 7rem);
 }
 
@@ -1988,19 +1988,6 @@
   margin: 0;
   font-size: clamp(1rem, 1.35vw, 1.16rem);
   line-height: 1.75;
-}
-
-.projects-count-copy {
-  margin: 1.75rem 0 0;
-  color: var(--text);
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 0.82rem;
-  font-weight: 600;
-  line-height: 1.6;
-}
-
-.projects-hero .hero-actions {
-  margin-top: 2.1rem;
 }
 
 .client-live i,

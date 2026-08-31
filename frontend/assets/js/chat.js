@@ -16,19 +16,29 @@ const sendBtn = document.getElementById("chat-send");
 
 let history = loadHistory();
 let isOpen = false;
+let hasWelcomed = history.length > 0;
 
 renderHistory();
 
-toggleBtn?.addEventListener("click", () => {
-  isOpen = !isOpen;
+function setChatOpen(nextOpen, { focusInput = true } = {}) {
+  isOpen = nextOpen;
   chatWindow.classList.toggle("open", isOpen);
   toggleBtn.setAttribute("aria-expanded", String(isOpen));
   toggleBtn.setAttribute("aria-label", isOpen ? "Chat sluiten" : "Chat openen");
-  if (isOpen && history.length === 0) {
+  if (isOpen && history.length === 0 && !hasWelcomed) {
     addBubble("bot", "Hallo! Ik ben de assistent van Rovai. Waarmee kan ik je helpen?");
+    hasWelcomed = true;
   }
-  if (isOpen) inputEl.focus();
+  if (isOpen && focusInput) inputEl.focus();
+}
+
+toggleBtn?.addEventListener("click", () => {
+  setChatOpen(!isOpen);
 });
+
+if (new URLSearchParams(window.location.search).get("chat") === "open") {
+  setChatOpen(true);
+}
 
 sendBtn?.addEventListener("click", sendMessage);
 inputEl?.addEventListener("keydown", (e) => {
@@ -189,9 +199,6 @@ async function sendMessage() {
 
 document.addEventListener("keydown", (event) => {
   if (event.key !== "Escape" || !isOpen) return;
-  isOpen = false;
-  chatWindow.classList.remove("open");
-  toggleBtn.setAttribute("aria-expanded", "false");
-  toggleBtn.setAttribute("aria-label", "Chat openen");
+  setChatOpen(false, { focusInput: false });
   toggleBtn.focus();
 });
