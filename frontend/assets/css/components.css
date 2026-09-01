@@ -1947,8 +1947,8 @@
 .projects-hero {
   display: grid;
   align-items: center;
-  min-height: clamp(640px, calc(100svh - 80px), 820px);
-  padding: clamp(5.5rem, 9vw, 8rem) 0;
+  min-height: clamp(480px, calc(100svh - 260px), 640px);
+  padding: clamp(3rem, 5vw, 4.5rem) 0 clamp(4rem, 7vw, 6.5rem);
 }
 
 .projects-hero::after {
@@ -1967,7 +1967,7 @@
 .projects-hero-editorial {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.5fr);
-  align-items: end;
+  align-items: center;
   gap: clamp(4rem, 7vw, 7rem);
 }
 
@@ -1989,7 +1989,6 @@
   font-size: clamp(1rem, 1.35vw, 1.16rem);
   line-height: 1.75;
 }
-
 .projects-count-copy {
   margin: 1.75rem 0 0;
   color: var(--text);

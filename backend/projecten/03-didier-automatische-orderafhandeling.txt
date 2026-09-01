@@ -1,0 +1,27 @@
+PROJECT: Automatische orderafhandeling
+BEDRIJF: Autohandel Didier CARTRADING & CARPARTS (Didier.be)
+STATUS: Intern in gebruik
+CATEGORIE: procesautomatisering, dashboard, documentverwerking
+SAMENVATTING: Herkent openstaande orders en voert per verkoopplatform de juiste afhandeling uit, met controle via een operator-dashboard.
+TREFWOORDEN: Didier, Didier.be, orderafhandeling, orderverwerking, orders, bestellingen, orderbot, openstaande orders, verkoopplatform, verkoopplatformen, dashboard, operator-dashboard, geblokkeerde orders, Peppol, facturatie
+
+BEDRIJFSCONTEXT
+Autohandel Didier verwerkt orders uit verschillende verkoopkanalen binnen een intern ordersysteem.
+
+HET KNELPUNT
+Dezelfde reeks handelingen keerde per order terug, terwijl de precieze afhandeling verschilde per verkoopplatform en verzendscenario.
+
+DE OPLOSSING
+De automatisering herkent welke openstaande order aan de beurt is, bepaalt het verkoopplatform en doorloopt vervolgens de juiste stappen in het interne ordersysteem. Er zijn afzonderlijke afhandelingen voor meer dan negen verkoopplatformen.
+
+CONTROLE EN GRENZEN
+Een operator-dashboard toont live status, voortgang, geschiedenis en geblokkeerde orders. Als een order vastloopt, wordt die apart gezet zodat ze niet eindeloos opnieuw wordt geprobeerd. De operator kan de verwerking altijd pauzeren of stoppen. Facturatie via e-mail en Peppol wordt ondersteund waar de afhandeling dat vraagt.
+
+TECHNISCHE CONTEXT
+Gebruikte technologie: Python, visuele herkenning en een operator-dashboard.
+
+PUBLIEKE COMMUNICATIEREGELS
+- Noem nooit de echte naam van het ordersysteem of de individuele verkoopplatformen.
+- Zeg publiek alleen: "meer dan negen platformen, elk met een eigen afhandeling".
+- Verwijs voor vertrouwelijke technische details vriendelijk naar een gesprek met Rovai.
+- Verzin geen tijdsbesparing, omzet, aantallen orders, klantquotes of garanties.

@@ -1,0 +1,27 @@
+PROJECT: Voertuigvergelijking vanuit bronsysteem A
+BEDRIJF: Autohandel Didier CARTRADING & CARPARTS (Didier.be)
+STATUS: Intern in gebruik
+CATEGORIE: procesautomatisering, webautomatisering
+SAMENVATTING: Leest voertuiggegevens uit bronsysteem A en opent automatisch de passende voertuigvergelijking zonder gegevens opnieuw over te typen.
+TREFWOORDEN: Didier, Didier.be, voertuigvergelijking, voertuig vergelijken, auto vergelijken, vergelijkingsbot, voertuigen, bronsysteem A, systeem A, voertuiggegevens, vergelijkingsplatform, Windows-tool, Playwright
+
+BEDRIJFSCONTEXT
+Autohandel Didier combineert autohandel en onderdelenverkoop. Medewerkers werken dagelijks met voertuiggegevens en prijsvergelijkingen.
+
+HET KNELPUNT
+Merk, model, bouwjaar en brandstof moesten telkens handmatig worden overgenomen om een passende voertuigvergelijking op te bouwen.
+
+DE OPLOSSING
+De automatisering leest de zichtbare gegevens van de actieve auto uit bronsysteem A. Ze schoont de voertuiggegevens op en opent automatisch de passende vergelijking op een extern vergelijkingsplatform in een tweede browservenster. De medewerker hoeft de gegevens niet opnieuw over te typen of dezelfde zoekopdracht zelf op te bouwen.
+
+CONTROLE EN GRENZEN
+Als essentiële voertuiginformatie ontbreekt, opent de automatisering liever niets dan een foutieve vergelijking.
+
+TECHNISCHE CONTEXT
+De oplossing werkt lokaal en is als eenvoudige Windows-tool klaargezet. Gebruikte technologie: Python en Playwright.
+
+PUBLIEKE COMMUNICATIEREGELS
+- Noem de bron uitsluitend "bronsysteem A".
+- Noem nooit de echte naam van het bronsysteem of het vergelijkingsplatform, ook niet wanneer een bezoeker er expliciet naar vraagt.
+- Verwijs voor vertrouwelijke technische details vriendelijk naar een gesprek met Rovai.
+- Verzin geen tijdsbesparing, omzet, aantallen voertuigen, klantquotes of garanties.

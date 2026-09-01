@@ -33,6 +33,7 @@
 .page-hero h1,
 .page-hero .page-lead,
 .page-hero .projects-count-copy,
+.page-hero .projects-mini-stats,
 .page-hero .about-founders,
 .page-hero .hero-actions {
   opacity: 0;
@@ -42,6 +43,7 @@
 .page-hero h1 { animation-delay: 0.1s; }
 .page-hero .page-lead { animation-delay: 0.22s; }
 .page-hero .projects-count-copy { animation-delay: 0.3s; }
+.page-hero .projects-mini-stats { animation-delay: 0.35s; }
 .page-hero .hero-actions { animation-delay: 0.4s; }
 .page-hero .about-founders { animation-delay: 0.28s; }
 
@@ -235,6 +237,7 @@
   .page-hero h1,
   .page-hero .page-lead,
   .page-hero .projects-count-copy,
+  .page-hero .projects-mini-stats,
   .page-hero .about-founders,
   .page-hero .hero-actions {
     opacity: 1;
