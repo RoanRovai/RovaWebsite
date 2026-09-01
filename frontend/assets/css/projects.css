@@ -1,7 +1,36 @@
 /* Project overview ------------------------------------------------------- */
 
-.projects-hero-actions {
-  margin-top: 2rem;
+.projects-mini-stats {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1.4rem;
+}
+
+.projects-mini-stats > div {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.projects-mini-stats > div + div {
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--line);
+}
+
+.projects-mini-stats strong {
+  color: var(--primary-heading);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.projects-mini-stats span {
+  max-width: 12ch;
+  color: var(--muted);
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1.35;
 }
 
 .project-index-section {
@@ -874,6 +903,21 @@
 }
 
 @media (max-width: 560px) {
+  .projects-mini-stats {
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .projects-mini-stats > div {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .projects-mini-stats > div + div {
+    padding-left: 1rem;
+  }
+
   .company-card-top,
   .company-profile-head {
     align-items: flex-start;

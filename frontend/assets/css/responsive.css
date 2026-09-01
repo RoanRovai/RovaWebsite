@@ -645,6 +645,10 @@
     font-size: clamp(2.9rem, 12vw, 3.8rem);
   }
 
+  .projects-count-copy {
+    font-size: 0.78rem;
+  }
+
   .client-identity {
     align-items: flex-start;
   }
