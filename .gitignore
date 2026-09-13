@@ -1,4 +1,4 @@
-# Environment variables — nooit committen
+# Environment variables, nooit committen
 .env
 *.env
 

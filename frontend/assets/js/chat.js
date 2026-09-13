@@ -61,7 +61,7 @@ function saveHistory() {
   try {
     sessionStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(history));
   } catch {
-    // sessionStorage kan onbeschikbaar zijn (bv. privénavigatie) — gesprek werkt dan gewoon zonder persistentie
+    // sessionStorage kan onbeschikbaar zijn (bv. privénavigatie), gesprek werkt dan gewoon zonder persistentie
   }
 }
 

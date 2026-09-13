@@ -178,7 +178,7 @@ if (portraitStack) {
     portraitCards.forEach((card) => {
       const other = portraitCards.find((item) => item !== card);
       const action = card.querySelector("[data-portrait-action]");
-      if (action && other) action.textContent = `— klik om ${other.dataset.portraitName} naar voren te halen`;
+      if (action && other) action.textContent = `klik om ${other.dataset.portraitName} naar voren te halen`;
     });
   }
 
