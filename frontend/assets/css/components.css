@@ -1483,6 +1483,8 @@
   gap: 1rem;
 }
 
+.contact-form label[hidden] { display: none; }
+
 .contact-form label {
   display: grid;
   gap: 0.55rem;
@@ -1492,7 +1494,8 @@
 }
 
 .contact-form input,
-.contact-form textarea {
+.contact-form textarea,
+.contact-form select {
   width: 100%;
   padding: 0.95rem 1rem;
   color: #fff;
@@ -1506,8 +1509,27 @@
 .contact-form input::placeholder,
 .contact-form textarea::placeholder { color: rgba(255, 255, 255, 0.28); }
 .contact-form input:focus,
-.contact-form textarea:focus { background: rgba(255, 255, 255, 0.09); border-color: var(--primary); box-shadow: 0 0 0 4px rgba(255, 107, 26, 0.1); }
+.contact-form textarea:focus,
+.contact-form select:focus { background: rgba(255, 255, 255, 0.09); border-color: var(--primary); box-shadow: 0 0 0 4px rgba(255, 107, 26, 0.1); }
 .contact-form textarea { min-height: 150px; resize: vertical; }
+.contact-form select {
+  appearance: none;
+  padding-right: 2.75rem;
+  font: inherit;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-opacity='0.55' stroke-width='2.2'%3E%3Cpath d='m5 9 7 7 7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+}
+.contact-form select option { color: #fff; background: var(--dark, #111210); }
+.label-optional {
+  margin-left: 0.4rem;
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+}
 .contact-form .button { justify-self: start; margin-top: 0.5rem; color: var(--dark); background: #fff; }
 .contact-form .button:hover { color: #fff; background: var(--primary); }
 

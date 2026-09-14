@@ -104,6 +104,19 @@
               <label>Waar kunnen we mee helpen?
                 <textarea id="contact-message" name="message" rows="5" placeholder="Vertel kort welke taak, welk proces of welke uitdaging je wil aanpakken..." required></textarea>
               </label>
+              <label>Hoe heb je ons gevonden? <span class="label-optional">optioneel</span>
+                <select id="contact-source" name="source">
+                  <option value="">Liever niet zeggen</option>
+                  <option value="LinkedIn">LinkedIn</option>
+                  <option value="Instagram">Instagram</option>
+                  <option value="Mond-aan-mond">Mond-aan-mond</option>
+                  <option value="Google">Google of een andere zoekmachine</option>
+                  <option value="Anders">Anders</option>
+                </select>
+              </label>
+              <label id="contact-source-other-field" hidden>Waar dan precies?
+                <input id="contact-source-other" type="text" name="source_other" placeholder="Bijvoorbeeld een beurs, een klant of een nieuwsbrief">
+              </label>
               <button class="button" type="submit">Verstuur je idee <span aria-hidden="true">→</span></button>
               <p class="form-success" role="status">Bedankt! Je bericht is goed ontvangen. Ik neem zo snel mogelijk contact met je op.</p>
               <p class="form-error" role="alert">Dat lukte even niet. Probeer opnieuw of mail rechtstreeks naar info@rovai.be.</p>

@@ -96,6 +96,20 @@ if (backToTop) {
 
 // Contact form
 const contactForm = document.getElementById("contact-form");
+const contactSource = document.getElementById("contact-source");
+const contactSourceOtherField = document.getElementById("contact-source-other-field");
+const contactSourceOther = document.getElementById("contact-source-other");
+
+if (contactSource && contactSourceOtherField) {
+  const syncSourceOther = () => {
+    const showOther = contactSource.value === "Anders";
+    contactSourceOtherField.hidden = !showOther;
+    if (!showOther && contactSourceOther) contactSourceOther.value = "";
+  };
+
+  contactSource.addEventListener("change", syncSourceOther);
+  syncSourceOther();
+}
 
 if (contactForm) {
   contactForm.addEventListener("submit", async (event) => {
@@ -122,6 +136,7 @@ if (contactForm) {
       if (!response.ok) throw new Error("Form submission failed");
 
       contactForm.reset();
+      if (contactSourceOtherField) contactSourceOtherField.hidden = true;
       if (submitButton) submitButton.style.display = "none";
       if (success) success.style.display = "block";
     } catch {
