@@ -1616,6 +1616,13 @@
   box-shadow: 0 0 0 5px rgba(255, 107, 26, 0.1);
 }
 
+.footer-vat {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
 .footer-column {
   display: grid;
   align-content: start;
