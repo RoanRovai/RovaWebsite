@@ -182,7 +182,7 @@
 
 .footer-main {
   display: grid;
-  grid-template-columns: minmax(240px, 1fr) minmax(130px, 0.55fr) minmax(150px, 0.65fr) minmax(300px, 1.2fr);
+  grid-template-columns: minmax(0, 1fr) repeat(3, max-content);
   gap: 2rem;
   padding-bottom: 4rem;
 }
