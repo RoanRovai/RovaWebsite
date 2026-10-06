@@ -183,7 +183,7 @@
 .footer-main {
   display: grid;
   grid-template-columns: minmax(0, 1fr) repeat(3, max-content);
-  gap: 2rem;
+  gap: clamp(2.5rem, 4vw, 4rem);
   padding-bottom: 4rem;
 }
 
